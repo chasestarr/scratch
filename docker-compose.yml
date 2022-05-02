@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  playwright:
+    network_mode: 'host'
+    build:
+      context: .
+      dockerfile: ./playwright.Dockerfile
+    command: 'node ./docker-compose-playwright.js'
+    depends_on:
+      - 'application'
+  application:
+    network_mode: 'host'
+    build:
+      context: .
+      dockerfile: ./application.Dockerfile
+    command: 'node ./docker-compose-serve.js'
+
+
